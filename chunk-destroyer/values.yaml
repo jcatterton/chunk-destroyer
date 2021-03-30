@@ -1,0 +1,18 @@
+name: chunk-destroyer
+image:
+  repository: 192.168.1.15:5000/chunk-destroyer
+  tag: 1.0.1
+  pullPolicy: Always
+secret:
+  - name: MONGO_URI
+    optional: false
+  - name: DATABASE
+    optional: false
+  - name: FS_FILES_COLLECTION
+    optional: false
+  - name: FS_CHUNKS_COLLECTION
+    optional: false
+  - name: KAFKA_BROKER
+    optional: false
+  - name: KAFKA_TOPIC
+    optional: false

@@ -1,0 +1,4 @@
+apiVersion: v1
+description: A Helm chart for Kubernetes deployment of the Correspondence Report Generator
+name: correspondence-report-generator
+version: 1.0.1

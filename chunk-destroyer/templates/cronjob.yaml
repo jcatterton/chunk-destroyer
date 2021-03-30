@@ -1,0 +1,26 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.name }}
+spec:
+  schedule: "0 3 * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      template:
+        spec:
+          containers:
+          - name: {{ .Values.name }}
+            image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+            env:
+            {{ range .Values.secret }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: chunk-destroyer
+                  key: {{ .name }}
+                  optional: {{ .optional }}
+            {{ end }}
+          restartPolicy: Never
